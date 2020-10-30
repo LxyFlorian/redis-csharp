@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace redis_csharp
+namespace redis_csharp.src
 {
-    public class Class1
+    class Main
     {
+
     }
 }
