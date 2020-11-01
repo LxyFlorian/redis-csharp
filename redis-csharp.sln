@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30611.23
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "redis-csharp", "redis-csharp.csproj", "{3CD81F6D-C640-4C4C-B61F-B4880498B5EA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "redis-csharp-tests", "tests\redis-csharp-tests\redis-csharp-tests.csproj", "{06C6F39B-8E7A-42A0-BE4A-17770B49C0E9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RedisTests", "tests\RedisTests\RedisTests.csproj", "{06C6F39B-8E7A-42A0-BE4A-17770B49C0E9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

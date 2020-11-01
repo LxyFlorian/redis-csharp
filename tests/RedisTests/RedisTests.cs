@@ -44,11 +44,11 @@ namespace redis_csharp_tests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException),"null")]
-        public void ConnectException()
+        public void SetWorks()
         {
-            Redis redis = new Redis(null, 5555);
-            redis.ConnectSocket();
+            Redis redis = new Redis();
+            redis.Set("Tour", "Eiffel");
+            Assert.AreEqual("Eiffel", redis.GetString("Tour"));
         }
     }
 }
