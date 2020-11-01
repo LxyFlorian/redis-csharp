@@ -47,12 +47,19 @@
     <None Include="README.md">
       <SubType>Component</SubType>
     </None>
+    <None Include="tests\redis-csharp-tests\obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <None Include="tests\redis-csharp-tests\packages.config" />
+    <None Include="tests\redis-csharp-tests\redis-csharp-tests.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
+    <Folder Include="tests\redis-csharp-tests\bin\Debug\" />
+    <Folder Include="tests\redis-csharp-tests\bin\Release\" />
+    <Folder Include="tests\redis-csharp-tests\obj\Debug\TempPE\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="src\Redis.cs" />
+    <Compile Include="tests\redis-csharp-tests\Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
