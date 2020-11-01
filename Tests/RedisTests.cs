@@ -2,10 +2,10 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using redis_csharp.src;
 
-namespace redis_csharp_tests
+namespace Tests
 {
     [TestClass]
-    public class RedisCSharpTests
+    public class RedisTests
     {
         [TestMethod]
         public void RedisHostWorks()

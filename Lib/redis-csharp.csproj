@@ -41,27 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include=".gitignore" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="README.md">
-      <SubType>Component</SubType>
-    </None>
-    <None Include="tests\RedisTests\obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
-    <None Include="tests\RedisTests\packages.config" />
-    <None Include="tests\RedisTests\RedisTests.csproj" />
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="Properties\" />
-    <Folder Include="tests\RedisTests\bin\Debug\" />
-    <Folder Include="tests\RedisTests\bin\Release\" />
-    <Folder Include="tests\RedisTests\obj\Debug\TempPE\" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Examples\example.cs" />
     <Compile Include="src\Redis.cs" />
-    <Compile Include="tests\RedisTests\Properties\AssemblyInfo.cs" />
-    <Compile Include="tests\RedisTests\RedisTests.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
