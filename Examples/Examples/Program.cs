@@ -21,6 +21,11 @@ namespace Examples
             string foo = redis.GetString("foo");
 
             Console.WriteLine(foo); //bar
+
+            //delete the foo key
+            bool delete = redis.Delete("foo");
+
+            Console.WriteLine(delete); // true
         }
     }
 }

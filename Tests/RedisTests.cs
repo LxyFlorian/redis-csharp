@@ -50,5 +50,13 @@ namespace Tests
             redis.Set("Tour", "Eiffel");
             Assert.AreEqual("Eiffel", redis.GetString("Tour"));
         }
+
+        [TestMethod]
+        public void DeleteWorks()
+        {
+            Redis redis = new Redis();
+            bool delete = redis.Delete("Tour");
+            Assert.AreEqual(true, delete);
+        }
     }
 }

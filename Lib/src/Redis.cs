@@ -249,6 +249,27 @@ namespace redis_csharp.src
             throw new Exception("Unexpected reply: " + s);
         }
 
+        private int ReadIntResponse(string cmd, params object[] args)
+        {
+            if (!SendCommand(cmd, args)) throw new Exception("Cannot connect to the server");
+
+            int b = stream.ReadByte();
+            if (b.Equals(-1))
+                throw new Exception("No data retrieved");
+
+            string s = this.ReadServerLine();
+            if(b.Equals('-'))
+                throw new Exception(s.StartsWith("-ERR ") ? s.Substring(5) : s.Substring(1));
+
+            if (b.Equals(':'))
+            {
+                int i;
+                if (int.TryParse(s, out i))
+                    return i;
+            }
+            throw new Exception("Unexpected response : " + s);
+        }
+
         /// <summary>
         /// Sent Data and return the data 
         /// </summary>
@@ -299,21 +320,27 @@ namespace redis_csharp.src
         }
 
         /// <summary>
-        /// Get a key
+        /// Get a String key
         /// </summary>
-        /// <param name="key">Name of the key to get</param>
-        /// <returns></returns>
-        private byte[] Get(string key)
-        {
-            if (key is null) throw new ArgumentNullException("key");
-            return PushCommand("GET", key);
-        }
-
+        /// <param name="key">Key to get</param>
+        /// <returns>String value of the key</returns>
         public string GetString(string key)
         {
             if (key.Equals(null)) throw new ArgumentNullException("key");
 
             return Encoding.UTF8.GetString(PushCommand("GET", key));
+        }
+
+        /// <summary>
+        /// Delete a key
+        /// </summary>
+        /// <param name="key">key to delete</param>
+        /// <returns>1 if deleted, 0 else</returns>
+        public bool Delete(string key)
+        {
+            if (key.Equals(null)) throw new ArgumentNullException("key");
+
+            return this.ReadIntResponse("DEL", key).Equals(1);
         }
         #endregion
     }
