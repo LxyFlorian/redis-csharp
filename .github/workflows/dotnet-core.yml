@@ -30,8 +30,8 @@ jobs:
     - name: Install dependencies
       run: dotnet restore 
     - name: build lib
-      run: dotnet build Lib\redis-csharp.csproj --configuration Release --no-restore /p:ContinuousIntegrationBuild=true
+      run: dotnet build Lib\\edis-csharp.csproj --configuration Release --no-restore
     - name: build tests project
-      run: dotnet build Tests\Tests.csproj --configuration Release --no-restore /p:ContinuousIntegrationBuild=true
+      run: dotnet build Tests\\Tests.csproj --configuration Release --no-restore 
     - name: Test
       run: dotnet test Tests\bin\Debug\Tests.dll --no-restore --verbosity normal
