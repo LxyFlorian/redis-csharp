@@ -1,0 +1,34 @@
+name: .NET Core
+
+on: push
+
+jobs:
+  build:
+
+    runs-on: windows-latest
+    
+    # Service containers to run with `container-job`
+    services:
+      # Label used to access the service container
+      redis:
+        # Docker Hub image
+        image: redis
+        # Set health checks to wait until redis has started
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.1.301
+    - name: Install dependencies
+      run: dotnet restore
+    - name: build lib & tests projects
+      run: dotnet build Lib\ --configuration Release --no-restore && dotnet build Tests\ --configuration Release --no-restore
+    - name: Test
+      run: dotnet test Tests\bin\Debug\Tests.dll --no-restore --verbosity normal
