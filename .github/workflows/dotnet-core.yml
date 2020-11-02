@@ -6,7 +6,7 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-    container: mcr.microsoft.com/dotnet/sdk:5.0
+    container: mcr.microsoft.com/dotnet/framework/sdk:4.8
     
     # Service containers to run with `container-job`
     services:
