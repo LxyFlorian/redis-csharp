@@ -5,7 +5,8 @@ on: push
 jobs:
   build:
 
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
+    container: mcr.microsoft.com/dotnet/sdk:5.0
     
     # Service containers to run with `container-job`
     services:
