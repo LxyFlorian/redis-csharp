@@ -23,15 +23,15 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Setup .NET Core
+    - name: Setup .NET 
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 3.1.301
     - name: Install dependencies
-      run: dotnet restore
+      run: dotnet restore 
     - name: build lib
-      run: dotnet build Lib\redis-csharp.proj --configuration Release --no-restore
+      run: dotnet build Lib\redis-csharp.csproj --configuration Release --no-restore /p:ContinuousIntegrationBuild=true
     - name: build tests project
-      run: dotnet build Tests\Tests.csproj --configuration Release --no-restore
+      run: dotnet build Tests\Tests.csproj --configuration Release --no-restore /p:ContinuousIntegrationBuild=true
     - name: Test
       run: dotnet test Tests\bin\Debug\Tests.dll --no-restore --verbosity normal
