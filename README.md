@@ -35,5 +35,5 @@ redis.Set("foo", "bar") // Will set a new key foo with bar as value.
 GET : 
 
 ```
-redis.Get("foo") // Will return the value of foo
+redis.GetString("foo") // Will return the value of foo
 ```
