@@ -23,13 +23,19 @@ namespace Examples
             int ttl = redis.TimeToLive("foo");
             Console.WriteLine(ttl); // 300
 
+            bool rename = redis.Rename("foo", "faa");
+            Console.WriteLine(rename); //true
+
             //get the value of foo key
-            string foo = redis.GetString("foo");
+            string foo = redis.GetString("faa");
             Console.WriteLine(foo); //bar
 
             //delete the foo key
-            bool delete = redis.Delete("foo");
+            bool delete = redis.Delete("faa");
             Console.WriteLine(delete); // true
+
+            //Dispose
+            redis.Dispose();
 
             //wait until the end
             Console.ReadKey();

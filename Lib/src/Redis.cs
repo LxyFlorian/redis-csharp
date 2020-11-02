@@ -221,7 +221,7 @@ namespace redis_csharp.src
             if (c == '-')
                 throw new Exception(s.StartsWith("-ERR ") ? s.Substring(5) : s.Substring(1));
 
-            if (c == '$')
+            if (c.Equals('$')) // Bulks string
             {
                 if (s == "$-1")
                     return null;
@@ -245,6 +245,10 @@ namespace redis_csharp.src
                     return retbuf;
                 }
                 throw new Exception("Invalid length");
+            }
+            else if (c.Equals('+')) //simple string
+            {
+                return Encoding.UTF8.GetBytes(s);
             }
             throw new Exception("Unexpected reply: " + s);
         }
@@ -270,6 +274,12 @@ namespace redis_csharp.src
             throw new Exception("Unexpected response : " + s);
         }
 
+        private string ReadStringResponse(string cmd, params object[] args)
+        {
+            if (!SendCommand(cmd, args)) throw new Exception("Cannot connect to the server");
+            return this.ReadServerLine();
+        }
+
         /// <summary>
         /// Sent Data and return the data 
         /// </summary>
@@ -284,6 +294,30 @@ namespace redis_csharp.src
                 throw new Exception("Cannot connect to the server");
 
             return this.ReadDataResponse();
+        }
+
+        /// <summary>
+        /// Dispose the connection
+        /// </summary>
+        public void Dispose()
+        {
+            this.Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        /// <summary>
+        /// Dispose the connection
+        /// </summary>
+        /// <param name="disposing"></param>
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                SendCommand("QUIT");
+                ReadDataResponse();
+                this.socket.Close();
+                this.socket = null;
+            }
         }
         #endregion
 
@@ -368,6 +402,20 @@ namespace redis_csharp.src
 
             return this.ReadIntResponse("TTL", key);
         } 
+
+        /// <summary>
+        /// Rename oldKey to newKey. 
+        /// </summary>
+        /// <param name="oldKey">Old name of the key to rename</param>
+        /// <param name="newKey">New name to give </param>
+        /// <returns></returns>
+        public bool Rename(string oldKey, string newKey)
+        {
+            if (oldKey.Equals(null)) throw new ArgumentNullException("oldKey");
+            if (newKey.Equals(null)) throw new ArgumentNullException("newKey");
+
+            return this.ReadStringResponse("RENAME", oldKey, newKey)[0].Equals('+');
+        }
         #endregion
     }
 }
