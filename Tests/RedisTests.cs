@@ -42,30 +42,5 @@ namespace Tests
             Assert.AreEqual("redis.mywebsite.com", redis.Host);
             Assert.AreEqual(5555, redis.Port);
         }
-
-        [TestMethod]
-        public void SetWorks()
-        {
-            Redis redis = new Redis();
-            redis.Set("Tour", "Eiffel");
-            Assert.AreEqual("Eiffel", redis.GetString("Tour"));
-        }
-
-        [TestMethod]
-        public void DeleteWorks()
-        {
-            Redis redis = new Redis();
-            bool delete = redis.Delete("Tour");
-            Assert.AreEqual(true, delete);
-        }
-
-        [TestMethod]
-        public void ExpireWorks()
-        {
-            Redis redis = new Redis();
-            redis.Set("foo", "bar");
-            bool expire = redis.Expire("foo", 300);
-            Assert.AreEqual(300, redis.TimeToLive("foo"));
-        }
     }
 }
