@@ -342,6 +342,32 @@ namespace redis_csharp.src
 
             return this.ReadIntResponse("DEL", key).Equals(1);
         }
+
+        /// <summary>
+        /// SET a timeout on key. After the timeout has expired, the key will automatically be deleted.
+        /// </summary>
+        /// <param name="key">The key to apply a EXPIRE</param>
+        /// <param name="seconds">Seconds to live to the key</param>
+        /// <returns>1 if the timeout was set; 0 if key does not exist</returns>
+        public bool Expire(string key, int seconds)
+        {
+            if (key.Equals(null)) throw new ArgumentNullException("key");
+            if (seconds.Equals(null)) throw new ArgumentNullException("seconds");
+
+            return this.ReadIntResponse("EXPIRE", key, seconds).Equals(1);
+        }
+
+        /// <summary>
+        /// Return the remanining time to live of a key that has a timeout
+        /// </summary>
+        /// <param name="key">Key to check the timeout</param>
+        /// <returns>TTL in seconds</returns>
+        public int TimeToLive(string key)
+        {
+            if (key.Equals(null)) throw new ArgumentNullException("key");
+
+            return this.ReadIntResponse("TTL", key);
+        } 
         #endregion
     }
 }

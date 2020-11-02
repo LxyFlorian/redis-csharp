@@ -58,5 +58,14 @@ namespace Tests
             bool delete = redis.Delete("Tour");
             Assert.AreEqual(true, delete);
         }
+
+        [TestMethod]
+        public void ExpireWorks()
+        {
+            Redis redis = new Redis();
+            redis.Set("foo", "bar");
+            bool expire = redis.Expire("foo", 300);
+            Assert.AreEqual(300, redis.TimeToLive("foo"));
+        }
     }
 }
