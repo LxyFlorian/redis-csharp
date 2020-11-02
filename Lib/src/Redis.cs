@@ -416,6 +416,18 @@ namespace redis_csharp.src
 
             return this.ReadStringResponse("RENAME", oldKey, newKey)[0].Equals('+');
         }
+
+/// <summary>
+        /// Remove the existing timeout on key, turning the key from volatile to persistent key
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        public bool Persist(string key)
+        {
+            if (key.Equals(null)) throw new Exception("key");
+
+            return this.ReadIntResponse("PERSIST", key).Equals(1);
+        }        
         #endregion
     }
 }

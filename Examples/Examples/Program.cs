@@ -23,6 +23,9 @@ namespace Examples
             int ttl = redis.TimeToLive("foo");
             Console.WriteLine(ttl); // 300
 
+            bool persist = redis.Persist("foo");
+            Console.WriteLine(persist); // true
+
             bool rename = redis.Rename("foo", "faa");
             Console.WriteLine(rename); //true
 

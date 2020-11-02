@@ -47,5 +47,15 @@ namespace Tests
             bool rename = redis.Rename("foo", "faa");
             Assert.IsTrue(rename);
         }
+
+        [TestMethod]
+        public void PersistWorks()
+        {
+            Redis redis = new Redis();
+            bool persist = redis.Persist("faa");
+            Assert.IsTrue(persist);
+            int ttl = redis.TimeToLive("faa");
+            Assert.AreEqual(-1, ttl);
+        }
     }
 }
