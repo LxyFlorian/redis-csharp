@@ -29,7 +29,9 @@ jobs:
         dotnet-version: 3.1.301
     - name: Install dependencies
       run: dotnet restore
-    - name: build lib & tests projects
-      run: dotnet build Lib\ --configuration Release --no-restore && dotnet build Tests\ --configuration Release --no-restore
+    - name: build lib
+      run: dotnet build Lib\ --configuration Release --no-restore
+    - name: build tests project
+      run: dotnet build Tests\ --configuration Release --no-restore
     - name: Test
       run: dotnet test Tests\bin\Debug\Tests.dll --no-restore --verbosity normal
