@@ -378,6 +378,18 @@ namespace redis_csharp.src
         }
 
         /// <summary>
+        /// Check if key exists. 
+        /// </summary>
+        /// <param name="key">The name of the key to check</param>
+        /// <returns>1 if the key exists. 0 else</returns>
+        public bool Exists(string key)
+        {
+            if (key.Equals(null)) throw new ArgumentNullException("key");
+
+            return this.ReadIntResponse("EXISTS", key).Equals(1);
+        }
+
+        /// <summary>
         /// SET a timeout on key. After the timeout has expired, the key will automatically be deleted.
         /// </summary>
         /// <param name="key">The key to apply a EXPIRE</param>
@@ -417,7 +429,7 @@ namespace redis_csharp.src
             return this.ReadStringResponse("RENAME", oldKey, newKey)[0].Equals('+');
         }
 
-/// <summary>
+        /// <summary>
         /// Remove the existing timeout on key, turning the key from volatile to persistent key
         /// </summary>
         /// <param name="key"></param>

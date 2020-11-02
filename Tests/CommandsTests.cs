@@ -24,6 +24,15 @@ namespace Tests
         }
 
         [TestMethod]
+        public void ExistsWorks()
+        {
+            Redis redis = new Redis();
+            redis.Set("exists", "true");
+            bool exists = redis.Exists("exists");
+            Assert.IsTrue(exists);
+        }
+
+        [TestMethod]
         public void ExpireWorks()
         {
             Redis redis = new Redis();
