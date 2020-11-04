@@ -69,7 +69,7 @@ redis.Delete("foo", "bar") // Will return true
 ```
 
 
-https://redis.io/commands/expire
+https://redis.io/commands/persist
 PERSIST : 
 
 ```
