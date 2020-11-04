@@ -65,7 +65,7 @@ https://redis.io/commands/rename
 RENAME : 
 
 ```
-redis.Delete("foo", "bar") // Will return true
+redis.Rename("foo", "bar") // Will return true
 ```
 
 
