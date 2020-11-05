@@ -37,6 +37,16 @@ namespace Examples
             bool delete = redis.Delete("faa");
             Console.WriteLine(delete); // true
 
+            //set a key increment with 2 as value
+            redis.Set("increment", "2");
+
+            //increment the key "increment"
+            int increment = redis.Increment("increment");
+            Console.WriteLine(increment); // 3
+
+            //Delete increment;
+            redis.Delete("increment");
+
             //Dispose
             redis.Dispose();
 

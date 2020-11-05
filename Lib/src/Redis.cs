@@ -436,10 +436,22 @@ namespace redis_csharp.src
         /// <returns></returns>
         public bool Persist(string key)
         {
-            if (key.Equals(null)) throw new Exception("key");
+            if (key.Equals(null)) throw new ArgumentNullException("key");
 
             return this.ReadIntResponse("PERSIST", key).Equals(1);
-        }        
+        }
+
+        /// <summary>
+        /// Increments the number stored at key by one. If the key does not exist, it is set to 0 before performing the operation.
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        public int Increment(string key)
+        {
+            if (key.Equals(null)) throw new ArgumentNullException("key");
+
+            return this.ReadIntResponse("INCR", key);
+        }
         #endregion
     }
 }

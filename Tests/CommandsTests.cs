@@ -66,5 +66,14 @@ namespace Tests
             int ttl = redis.TimeToLive("faa");
             Assert.AreEqual(-1, ttl);
         }
+
+        [TestMethod]
+        public void IncrementWorks()
+        {
+            Redis redis = new Redis();
+            redis.Set("increment", "2");
+            int increment = redis.Increment("increment");
+            Assert.AreEqual(3, increment);
+        }
     }
 }
