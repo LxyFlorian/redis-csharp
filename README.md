@@ -26,14 +26,52 @@ Redis redis = new Redis("redis.mywebsite.com", 5050) // host : redis.mywebsite.c
 
 ### Communicate with Redis 
 
+https://redis.io/commands/set
 SET : 
 
 ```
 redis.Set("foo", "bar") // Will set a new key foo with bar as value.
 ```
 
+https://redis.io/commands/get
 GET : 
 
 ```
 redis.GetString("foo") // Will return the value of foo
+```
+
+https://redis.io/commands/del
+DELETE : 
+
+```
+redis.Delete("foo") // Will return true
+```
+
+https://redis.io/commands/expire
+EXPIRE : 
+
+```
+redis.Expire("foo", 300) // Timeout expire after 300s
+```
+
+https://redis.io/commands/ttl
+TTL : 
+
+```
+redis.TimeToLive("foo") // Will return 300
+```
+
+https://redis.io/commands/rename
+RENAME : 
+
+```
+redis.Rename("foo", "bar") // Will return true
+```
+
+
+https://redis.io/commands/persist
+PERSIST : 
+
+```
+redis.Persist("foo") // Will return true
 ```
