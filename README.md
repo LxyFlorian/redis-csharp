@@ -75,3 +75,11 @@ PERSIST :
 ```
 redis.Persist("foo") // Will return true
 ```
+
+
+https://redis.io/commands/incr
+INCRE : 
+
+```
+redis.Increment("foo") // Will return true
+```
