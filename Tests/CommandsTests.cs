@@ -75,5 +75,24 @@ namespace Tests
             int increment = redis.Increment("increment");
             Assert.AreEqual(3, increment);
         }
+
+        [TestMethod]
+        public void RPush()
+        {
+            Redis redis = new Redis();
+            int length = redis.RPush("tests", "John Doe");
+            Assert.AreEqual(length, 1);
+        }
+
+        [TestMethod]
+        public void LPush()
+        {
+            Redis redis = new Redis();
+            int length = redis.LPush("tests", "Mr X");
+            Assert.AreEqual(length, 2);
+
+            //delete the key tests
+            redis.Delete("tests");
+        }
     }
 }

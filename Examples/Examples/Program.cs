@@ -47,6 +47,13 @@ namespace Examples
             //Delete increment;
             redis.Delete("increment");
 
+            //push John Doe to list names and return the length of the list
+            int length = redis.RPush("names", "John Doe");
+            Console.WriteLine(length); // 1;
+
+            //Push Mr X at the first position of names
+            redis.LPush("names", "Mr X");
+
             //Dispose
             redis.Dispose();
 

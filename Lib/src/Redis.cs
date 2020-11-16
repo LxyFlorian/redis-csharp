@@ -452,6 +452,35 @@ namespace redis_csharp.src
 
             return this.ReadIntResponse("INCR", key);
         }
+
+        /// <summary>
+        /// Insert all the specified values at the tail of the list stored at key. If key does not exist, it is created as empty list before performing the push operation. When key holds a value that is not a list, an error is returned.
+        /// </summary>
+        /// <param name="key">Name of the list</param>
+        /// <param name="element">Element to insert</param>
+        /// <returns>the length of the list after the push operation</returns>
+        public int RPush(string key, string element)
+        {
+            if (key.Equals(null)) throw new ArgumentNullException("key");
+            if (element.Equals(null)) throw new ArgumentNullException("element");
+
+            return this.ReadIntResponse("RPUSH", key, element);
+        }
+
+        /// <summary>
+        /// Insert all the specified values at the head of the list stored at key. If key does not exist, it is created as empty list before performing the push operations. When key holds a value that is not a list, an error is returned.
+        /// </summary>
+        /// <param name="key">Name of the list</param>
+        /// <param name="element">Element to insert</param>
+        /// <returns>the length of the list after the push operation</returns>
+        public int LPush(string key, string element)
+        {
+            if (key.Equals(null)) throw new ArgumentNullException("key");
+            if (element.Equals(null)) throw new ArgumentNullException("element");
+
+            return this.ReadIntResponse("LPUSH", key, element);
+        }
+
         #endregion
     }
 }
