@@ -78,7 +78,7 @@ redis.Persist("foo") // Will return true
 
 
 https://redis.io/commands/incr
-INCRE : 
+INCR : 
 
 ```
 redis.Increment("foo") // Will return true
