@@ -481,6 +481,18 @@ namespace redis_csharp.src
             return this.ReadIntResponse("LPUSH", key, element);
         }
 
+        /// <summary>
+        /// Returns the length of the list stored at key. If key does not exist, it is interpreted as an empty list and 0 is returned. An error is returned when the value stored at key is not a list.
+        /// </summary>
+        /// <param name="key">The key to check</param>
+        /// <returns>the length of the list at key</returns>
+        public int LLen(string key)
+        {
+            if (key.Equals(null)) throw new ArgumentNullException("key");
+
+            return this.ReadIntResponse("LLEN", key);
+        }
+
         #endregion
     }
 }

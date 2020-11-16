@@ -77,7 +77,7 @@ namespace Tests
         }
 
         [TestMethod]
-        public void RPush()
+        public void RPushWorks()
         {
             Redis redis = new Redis();
             int length = redis.RPush("tests", "John Doe");
@@ -85,11 +85,19 @@ namespace Tests
         }
 
         [TestMethod]
-        public void LPush()
+        public void LPushWorks()
         {
             Redis redis = new Redis();
             int length = redis.LPush("tests", "Mr X");
             Assert.AreEqual(length, 2);
+
+        }
+
+        [TestMethod]
+        public void LlenWorks()
+        {
+            Redis redis = new Redis();
+            int length = redis.LLen("tests");
 
             //delete the key tests
             redis.Delete("tests");
