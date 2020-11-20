@@ -102,5 +102,14 @@ namespace Tests
             //delete the key tests
             redis.Delete("tests");
         }
+
+        [TestMethod]
+        public void LPosWorks()
+        {
+            Redis redis = new Redis();
+            redis.LPush("positions", "1");
+            redis.RPush("positions", "2");
+            Assert.AreEqual(2, redis.LPos("2"));
+        }
     }
 }

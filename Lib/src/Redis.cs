@@ -493,6 +493,17 @@ namespace redis_csharp.src
             return this.ReadIntResponse("LLEN", key);
         }
 
+        /// <summary>
+        /// The command returns the index of matching elements inside a Redis list. By default, when no options are given, it will scan the list from head to tail, looking for the first match of "element".
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns>The command returns the integer representing the matching element, or null if there is no match. However, if the COUNT option is given the command returns an array (empty if there are no matches).</returns>
+        public int LPos(string key)
+        {
+            if (key.Equals(null)) throw new ArgumentNullException("key");
+
+            return this.ReadIntResponse("LPOS", key);
+        }
         #endregion
     }
 }
