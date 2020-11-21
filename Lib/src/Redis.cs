@@ -504,6 +504,18 @@ namespace redis_csharp.src
 
             return this.ReadIntResponse("LPOS", key);
         }
+
+        /// <summary>
+        /// Removes the first count occurrences of elements equal to element from the list stored at key
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns>the number of removed elements.</returns>
+        public int LRem(string key, int count, string value)
+        {
+            if (key.Equals(null)) throw new ArgumentNullException("key");
+
+            return this.ReadIntResponse("LREM", key, count, value);
+        }
         #endregion
     }
 }

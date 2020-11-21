@@ -111,5 +111,16 @@ namespace Tests
             redis.RPush("positions", "2");
             Assert.AreEqual(2, redis.LPos("2"));
         }
+
+        [TestMethod]
+        public void LRemWorks()
+        {
+            Redis redis = new Redis();
+            redis.RPush("mylist", "hello");
+            redis.RPush("mylist", "hello");
+            redis.RPush("mylist", "foo");
+            redis.LRem("mylist", 2, "hello");
+            Assert.AreEqual(1, redis.LLen("mylist"));
+        }
     }
 }
