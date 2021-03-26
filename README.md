@@ -109,3 +109,18 @@ int length = redis.LLen("names") // Will return the length of the list
 ```
 
 
+https://redis.io/commands/lpos
+LPOS : 
+
+```
+int position = redis.LPos("names", "John Doe") // Will return the position of John Doe in the list
+```
+
+
+
+https://redis.io/commands/lrem
+LRem : 
+
+```
+int removedElements = redis.LRem("names", 2, "John Doe") // Will remove 2 John Doe of the list
+```
