@@ -83,3 +83,29 @@ INCR :
 ```
 redis.Increment("foo") // Will return true
 ```
+
+
+https://redis.io/commands/rpush
+RPUSH : 
+
+```
+int length = redis.RPush("names", "John Doe") // Will push John Doe to names and return the length of the list
+```
+
+
+https://redis.io/commands/lpush
+LPUSH : 
+
+```
+int length = redis.LPush("names", "John Doe") // Will push John Doe at the first position of names and return the length of the list
+```
+
+
+https://redis.io/commands/llen
+LLEN : 
+
+```
+int length = redis.LLen("names") // Will return the length of the list
+```
+
+
