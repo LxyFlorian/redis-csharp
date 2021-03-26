@@ -65,6 +65,20 @@ namespace Examples
             //delete the list
             redis.Delete("names");
 
+            //new list examples with 3 John & 1 Foo
+            redis.RPush("examples", "John");
+            redis.RPush("examples", "John");
+            redis.RPush("examples", "Foo");
+            redis.RPush("examples", "John");
+
+            //delete 2 John in examples
+            int removedElements = redis.LRem("examples", 2, "John");
+            Console.WriteLine(String.Format("count of removed elements : {0}", removedElements));
+
+            //and get the length of the list after.
+            int examplesLength = redis.LLen("examples");
+            Console.WriteLine(String.Format("The length of examples : {0}", examplesLength));
+
             //Dispose
             redis.Dispose();
 
