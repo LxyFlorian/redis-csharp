@@ -54,6 +54,13 @@ namespace Examples
             //Push Mr X at the first position of names
             redis.LPush("names", "Mr X");
 
+            //Get the length of a list
+            int namesLength = redis.LLen("names");
+            Console.WriteLine(String.Format("The length of names is : {0}", namesLength));
+
+            //delete the list
+            redis.Delete("names");
+
             //Dispose
             redis.Dispose();
 
