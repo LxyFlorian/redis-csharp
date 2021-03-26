@@ -107,9 +107,9 @@ namespace Tests
         public void LPosWorks()
         {
             Redis redis = new Redis();
-            redis.LPush("positions", "1");
-            redis.RPush("positions", "2");
-            Assert.AreEqual(2, redis.LPos("2"));
+            redis.LPush("positions", "0");
+            redis.RPush("positions", "1");
+            Assert.AreEqual(1, redis.LPos("positions", "2"));
         }
 
         [TestMethod]

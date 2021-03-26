@@ -498,11 +498,11 @@ namespace redis_csharp.src
         /// </summary>
         /// <param name="key"></param>
         /// <returns>The command returns the integer representing the matching element, or null if there is no match. However, if the COUNT option is given the command returns an array (empty if there are no matches).</returns>
-        public int LPos(string key)
+        public int LPos(string key, string element)
         {
             if (key.Equals(null)) throw new ArgumentNullException("key");
 
-            return this.ReadIntResponse("LPOS", key);
+            return this.ReadIntResponse("LPOS", key, element);
         }
 
         /// <summary>

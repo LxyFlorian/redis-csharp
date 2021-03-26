@@ -58,6 +58,10 @@ namespace Examples
             int namesLength = redis.LLen("names");
             Console.WriteLine(String.Format("The length of names is : {0}", namesLength));
 
+            //search for the position of a element in a key. 
+            int position = redis.LPos("names", "John Doe");
+            Console.WriteLine(position);
+
             //delete the list
             redis.Delete("names");
 
